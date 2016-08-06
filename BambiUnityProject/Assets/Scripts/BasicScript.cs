@@ -9,7 +9,11 @@ public class BasicScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+	{
+		if (Input.GetKeyUp (KeyCode.Space))
+		{
+			GetComponent<Animator> ().SetTrigger ("JumpPressed");
+		}
 	}
 }
