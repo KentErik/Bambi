@@ -46,6 +46,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BasicScript.cs" />
+     <Compile Include="Assets\Scripts\DungeonMaster.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationFloorTile.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationLevelGeneratorScript.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationMap.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationMapEntity.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationObjectFactory.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationPlayerAvatar.cs" />
+     <Compile Include="Assets\Scripts\ExplorationScripts\ExplorationWallTile.cs" />
+     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
+     <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\MainCamera.cs" />
+     <Compile Include="Assets\Scripts\RoboBoyScript.cs" />
+     <Compile Include="Assets\Scripts\SandboxScript.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player
+  - UnbreakableWall
+  - BreakableWall
+  - Pickupable
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Ground
+  - Item
+  - Unpassable
   - 
   - 
   - 
@@ -40,4 +44,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1453077357
+    locked: 0
+  - name: Walls
+    uniqueID: 3759156473
+    locked: 0
+  - name: Player
+    uniqueID: 3387075155
+    locked: 0
+  - name: Items
+    uniqueID: 2874567743
     locked: 0
