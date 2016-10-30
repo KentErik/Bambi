@@ -316,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 865453823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 11.35, y: 7.52, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -330,7 +330,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2036743608}
   - 114: {fileID: 2036743607}
-  - 114: {fileID: 2036743606}
   - 114: {fileID: 2036743609}
   - 114: {fileID: 2036743610}
   - 114: {fileID: 2036743611}
@@ -341,20 +340,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2036743606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036743605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028b5e698f5344e60b6a85268fbf1a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columns: 10
-  rows: 10
-  EOFactory: {fileID: 2036743609}
 --- !u!114 &2036743607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93dc09ea98a74d33901db5422a642aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  factoryName: 
   ExplorationFloorTilePrefab: {fileID: 114000010187924570, guid: 97360495bd9f44bacbecf9c9d4ebea82,
     type: 2}
   ExplorationWallTilePrefab: {fileID: 114000013352189688, guid: 12c088b7c1c04467ebf1106af40b066b,

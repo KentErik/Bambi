@@ -14,9 +14,11 @@ public class DungeonMaster : MonoBehaviour {
 
 	private DungeonState currentState;
 
-	private ExplorationLevelGeneratorScript explorationLevelGenerator;
+	private ExplorationMapGenerator mapGenerator;
 
 	private GameObject mainCamera;
+
+	public System.Random BambiRandom;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -33,7 +35,15 @@ public class DungeonMaster : MonoBehaviour {
 
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 
-		explorationLevelGenerator = GetComponent<ExplorationLevelGeneratorScript> ();
+		int bambiRandomSeed = System.DateTime.Now.Millisecond;
+		bambiRandomSeed = 263;
+		print (" &&& Random Seed &&&");
+		print (bambiRandomSeed.ToString ());
+		print (" &&& Random Seed &&&");
+		BambiRandom = new System.Random (bambiRandomSeed);
+
+//		explorationLevelGenerator = GetComponent<ExplorationLevelGeneratorScript> ();
+		mapGenerator = new ExplorationMapGenerator();
 
 	}
 
@@ -49,10 +59,17 @@ public class DungeonMaster : MonoBehaviour {
 
 	public void GenerateDebugLevel()
 	{
-		currentDungeonMap = explorationLevelGenerator.GenerateLevel ();
+		currentDungeonMap = mapGenerator.GenerateLevel(51, 51);
+
+
 		mainCamera.transform.position =
 			new Vector3(currentDungeonMap.PlayerEntity.x, currentDungeonMap.PlayerEntity.y, mainCamera.transform.position.z);
 		currentState = DungeonState.AwaitingInput;
+	}
+
+	public void GenerateRoomsThenMazes()
+	{
+
 	}
 
 	public void RecieveInput(BambiInput inp)

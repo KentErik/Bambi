@@ -3,9 +3,7 @@ using System.Collections;
 
 public class ExplorationObjectFactory : MonoBehaviour 
 {
-
-
-	protected static ExplorationObjectFactory instance; // Needed
+	public static ExplorationObjectFactory instance; // Needed
 
 	public ExplorationMapEntity ExplorationFloorTilePrefab;
 	public ExplorationMapEntity ExplorationWallTilePrefab;

@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public class ExplorationLevelGeneratorScript : MonoBehaviour 
+public class ExplorationMapGenerator 
 {
-
+	
 	// public variables
 
 	public int columns = 8;
@@ -15,6 +15,14 @@ public class ExplorationLevelGeneratorScript : MonoBehaviour
 //	private Transform levelHolder;
 
 	public ExplorationObjectFactory EOFactory;
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="ExplorationLevelGeneratorScript"/> class.
+	/// </summary>
+	public ExplorationMapGenerator()
+	{
+		EOFactory = ExplorationObjectFactory.instance;
+	}
 
 //	private List<ExplorationMapEntity> mapEntities;
 
@@ -25,36 +33,39 @@ public class ExplorationLevelGeneratorScript : MonoBehaviour
 	/// </summary>
 	public ExplorationMap GenerateLevel()
 	{
-		ExplorationMap map = new ExplorationMap ("map1DEBUG", rows, columns);
-		//Instantiate Board and set boardHolder to its transform.
-//		levelHolder = new GameObject ("Board").transform;
+		LevelGenerator generator = new RoomsThenMazesLevelGenerator(1000, 50);
+		Level l = generator.GenerateRandomLevel (rows, columns);
 
+		ExplorationMap map = new ExplorationMap ("map1DEBUG", rows, columns);
+
+
+		//Instantiate Board and set boardHolder to its transform.
+		//TODO: Figure out how to clean up the heirarchy of all the Prefabs being generated (setting their transform parent)
+//		levelHolder = new GameObject ("Board").transform;
+		EOFactory = ExplorationObjectFactory.instance;
+
+		EOFactory.CreateFloorTile (1, 1);
 
 		// loop to generate our floor tiles; for now, this is just everything
 		for(int x = 0; x < columns; ++x)
 		{
 			for(int y = 0; y < rows; ++y)
 			{
+
+				if (l.levelFloorData [x, y])
+					map.AddEntity (EOFactory.CreateFloorTile (x, y));
+				else
+					map.AddEntity (EOFactory.CreateWallTile (x, y));
 				
-				// *** FLOOR TILES ***
-				map.AddEntity( EOFactory.CreateFloorTile(x, y));
-
-
-				// *** WALL TILES ***
-				if (x == 0 || x == columns-1 || y == 0 || y == rows-1)
-					map.AddEntity(EOFactory.CreateWallTile (x, y));
-
-
-
-
-				//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
-//				instance.transform.SetParent (levelHolder);
 			}
 		}
 
+		Rect playerRoom = l.rooms [0].room;
+		int playerX = (int)playerRoom.center.x;
+		int playerY = (int)playerRoom.center.y;
 
 		// *** PLAYER ***
-		ExplorationMapEntity player = EOFactory.CreatePlayer(4,4);
+		ExplorationMapEntity player = EOFactory.CreatePlayer(playerX,playerY);
 		map.AddEntity(player);
 		map.PlayerEntity = player;
 
@@ -65,13 +76,13 @@ public class ExplorationLevelGeneratorScript : MonoBehaviour
 	/// <summary>
 	/// Calls the GenerateLevel function, but first will set cols/rows as fed
 	/// </summary>
-	/// <param name="cols">Number of Columns to create.</param>
 	/// <param name="rows">Number of Rows to create.</param>
-	public void GenerateLevel(int cols, int rows)
+	/// <param name="cols">Number of Columns to create.</param>
+	public ExplorationMap GenerateLevel(int rows, int cols)
 	{
 		this.rows = rows;
 		this.columns = cols;
-		GenerateLevel ();
+		return GenerateLevel ();
 	}
 }
 
